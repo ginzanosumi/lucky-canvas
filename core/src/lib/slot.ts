@@ -70,6 +70,13 @@ export default class SlotMachine extends Lucky {
   private ImageCache = new Map()
 
   /**
+   * 停止时的偏移量
+   * 
+   * 用于形成「刚好错过」的感觉
+   */
+  private _offset = 0
+
+  /**
    * 老虎机构造器
    * @param config 配置项
    * @param data 抽奖数据
@@ -472,7 +479,7 @@ export default class SlotMachine extends Lucky {
         const endScroll = cellAndSpacing * orderIndex + (_p * i * direction) - stopScroll
         const currSpeed = quad.easeOut(this.FPS, stopScroll, endScroll, _defaultConfig.decelerationTime) - stopScroll
         if (Math.abs(currSpeed) > speed) {
-          this.endScroll[slotIndex] = endScroll
+          this.endScroll[slotIndex] = endScroll + this._offset
           break
         }
       }
@@ -496,8 +503,9 @@ export default class SlotMachine extends Lucky {
     this.run()
   }
 
-  public stop (index: number | number[]): void {
+  public stop (index: number | number[], offset: number = 0): void {
     if (this.step === 0 || this.step === 3) return
+    this._offset = offset
     // 设置中奖索引
     if (typeof index === 'number') {
       this.prizeFlag = new Array(this.slots.length).fill(index)
