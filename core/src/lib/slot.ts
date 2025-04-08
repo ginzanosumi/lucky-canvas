@@ -1,6 +1,7 @@
 import Lucky from './lucky'
-import { UserConfigType, ImgType, ImgItemType, Tuple } from '../types/index'
-import SlotMachineConfig, {
+import type { UserConfigType } from '../types/index'
+import type SlotMachineConfig  from '../types/slot'
+import type {
   BlockType,
   PrizeType,
   SlotType,
@@ -344,7 +345,7 @@ export default class SlotMachine extends Lucky {
           const lineClamp = font.lineClamp || _defaultStyle.lineClamp
           _ctx.font = `${fontWeight} ${size >> 0}px ${style}`
           _ctx.fillStyle = font.fontColor || _defaultStyle.fontColor
-          let lines = [], text = String(font.text)
+          let lines: string[] = [], text = String(font.text)
           // 计算文字换行
           if (wordWrap) {
             // 最大宽度

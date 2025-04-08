@@ -1,6 +1,7 @@
 import Lucky from './lucky'
-import { UserConfigType, FontItemType, ImgType } from '../types/index'
-import LuckyWheelConfig, {
+import type { UserConfigType, FontItemType } from '../types/index'
+import type LuckyWheelConfig from '../types/wheel'
+import type {
   BlockType,
   PrizeType,
   ButtonType,
@@ -370,7 +371,7 @@ export default class LuckyWheel extends Lucky {
         const lineClamp = font.lineClamp || _defaultStyle.lineClamp
         ctx.fillStyle = fontColor
         ctx.font = `${fontWeight} ${fontSize >> 0}px ${fontStyle}`
-        let lines = [], text = String(font.text)
+        let lines: string[] = [], text = String(font.text)
         if (wordWrap) {
           lines = splitText(ctx, removeEnter(text), (lines) => {
             // 三角形临边

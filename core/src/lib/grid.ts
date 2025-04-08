@@ -1,6 +1,7 @@
 import Lucky from './lucky'
-import { UserConfigType, ImgType } from '../types/index'
-import LuckyGridConfig, {
+import type { UserConfigType } from '../types/index'
+import type LuckyGridConfig from '../types/grid'
+import type {
   BlockType,
   PrizeType,
   ButtonType,
@@ -17,7 +18,6 @@ import LuckyGridConfig, {
 } from '../types/grid'
 import {
   has,
-  isExpectType,
   removeEnter,
   computePadding,
   hasBackground,
@@ -356,7 +356,7 @@ export default class LuckyGrid extends Lucky {
         ctx.fill()
       }
       // 绘制图片
-      block.imgs && block.imgs.forEach((imgInfo, imgIndex) => {
+      block.imgs && block.imgs.forEach((imgInfo) => {
         const blockImg = this.ImageCache.get(imgInfo.src)
         if (!blockImg) return
         // 绘制图片
@@ -424,7 +424,7 @@ export default class LuckyGrid extends Lucky {
         cellIndex -= this.prizes.length
       }
       // 绘制图片
-      cell.imgs && cell.imgs.forEach((imgInfo, imgIndex) => {
+      cell.imgs && cell.imgs.forEach((imgInfo) => {
         const cellImg = this.ImageCache.get(imgInfo.src)
         const activeImg = this.ImageCache.get(imgInfo['activeSrc'])
         if (!cellImg) return
@@ -460,7 +460,7 @@ export default class LuckyGrid extends Lucky {
         const lineClamp = font.lineClamp || _defaultStyle.lineClamp
         ctx.font = `${fontWeight} ${size >> 0}px ${style}`
         ctx.fillStyle = (isActive && _activeStyle.fontColor) ? _activeStyle.fontColor : (font.fontColor || _defaultStyle.fontColor)
-        let lines = [], text = String(font.text)
+        let lines: string[] = [], text = String(font.text)
         // 计算文字换行
         if (wordWrap) {
           // 最大宽度

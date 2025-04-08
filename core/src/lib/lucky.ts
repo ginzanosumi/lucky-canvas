@@ -1,9 +1,9 @@
 import '../utils/polyfill'
 import { has, isExpectType, throttle } from '../utils/index'
-import { name, version } from '../../package.json'
-import { ConfigType, UserConfigType, ImgItemType, ImgType, Tuple } from '../types/index'
+import { name, version } from '../../../package.json'
+import type { ConfigType, UserConfigType, ImgItemType, ImgType, Tuple } from '../types/index'
 import { defineReactive } from '../observer'
-import Watcher, { WatchOptType } from '../observer/watcher'
+import Watcher, { type WatchOptType } from '../observer/watcher'
 
 export default class Lucky {
   static version: string = version

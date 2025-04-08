@@ -1,4 +1,4 @@
-import { ImgType } from '../types/index'
+import type { ImgType } from '../types/index'
 import { roundRectByArc } from './math'
 
 /**
@@ -78,7 +78,7 @@ const getMatrix = (radius: number, sigma?: number): number[] => {
   const sigma_2 = sigma * sigma
   const sigma2_2 = 2 * sigma_2
   const denominator = 1 / (2 * Math.PI * sigma_2)
-  const matrix = []
+  const matrix: number[] = []
   let total = 0
   // 计算权重矩阵
   for (let x = -r; x <= r; x++) {
