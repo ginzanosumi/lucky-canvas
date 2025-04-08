@@ -19,6 +19,8 @@ export default class Lucky {
     height: string | number
   }
 
+  protected _offscreenCanvas?: HTMLCanvasElement
+
   /**
    * 公共构造器
    * @param config
@@ -362,7 +364,7 @@ export default class Lucky {
     _offscreenCanvas: HTMLCanvasElement,
     _ctx: CanvasRenderingContext2D
   } | void {
-    if (!has(this, '_offscreenCanvas')) {
+    if (!this._offscreenCanvas) {
       if (window && window.document && this.config.flag === 'WEB') {
         this['_offscreenCanvas'] = document.createElement('canvas')
       } else {

@@ -36,8 +36,6 @@ export default class SlotMachine extends Lucky {
   private defaultStyle: DefaultStyleType = {}
   private _defaultStyle: Required<DefaultStyleType> = {} as Required<DefaultStyleType>
   private endCallback: EndCallbackType = () => {}
-  // 离屏canvas
-  private _offscreenCanvas?: HTMLCanvasElement
   private cellWidth = 0             // 格子宽度
   private cellHeight = 0            // 格子高度
   private cellAndSpacing = 0        // 格子+间距
